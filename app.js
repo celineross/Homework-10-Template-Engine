@@ -43,9 +43,52 @@ const engQuestions = [
 ]
 
 //set of questions for interns
+const intQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter name: "
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "Enter ID: "
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter email: "
+    },
+    {
+        type: "input",
+        name: "school",
+        message: "Enter college/university: "
+    }
+]
 
 //set of questions for managers
-
+const manQuestions = [
+    {
+        type: "input",
+        name: "name",
+        message: "Enter name: "
+    },
+    {
+        type: "input",
+        name: "id",
+        message: "Enter ID: "
+    },
+    {
+        type: "input",
+        name: "email",
+        message: "Enter email: "
+    },
+    {
+        type: "input",
+        name: "officeNumber",
+        message: "Enter office #: "
+    }
+]
 
 //function to display engineer data
 function eng() {
@@ -58,18 +101,18 @@ function eng() {
 
 //function to display intern data
 function int() {
-    inquirer.prompt(engQuestions).then(function (data ) {
-        const newEng = new Engineer(data.name, data.email, data.id, data.github);
-        team.push(newEng);
+    inquirer.prompt(intQuestions).then(function (data ) {
+        const newInt = new Intern(data.name, data.email, data.id, data.school);
+        team.push(newInt);
         init();
     });
 }
 
 //function to display manager data
 function man() {
-    inquirer.prompt(engQuestions).then(function (data ) {
-        const newEng = new Engineer(data.name, data.email, data.id, data.github);
-        team.push(newEng);
+    inquirer.prompt(manQuestions).then(function (data ) {
+        const newMan = new Manager(data.name, data.email, data.id, data.officeNumber);
+        team.push(newMan);
         init();
     });
 }
@@ -90,25 +133,4 @@ function init() {
     });
 }
 
-// Write code to use inquirer to gather information about the development team members,
-// and to create objects for each team member (using the correct classes as blueprints!)
-
-// After the user has input all employees desired, call the `render` function (required
-// above) and pass in an array containing all employee objects; the `render` function will
-// generate and return a block of HTML including templated divs for each employee!
-
-// After you have your html, you're now ready to create an HTML file using the HTML
-// returned from the `render` function. Now write it to a file named `team.html` in the
-// `output` folder. You can use the variable `outputPath` above target this location.
-// Hint: you may need to check if the `output` folder exists and create it if it
-// does not.
-
-// HINT: each employee type (manager, engineer, or intern) has slightly different
-// information; write your code to ask different questions via inquirer depending on
-// employee type.
-
-// HINT: make sure to build out your classes first! Remember that your Manager, Engineer,
-// and Intern classes should all extend from a class named Employee; see the directions
-// for further information. Be sure to test out each class and verify it generates an
-// object with the correct structure and methods. This structure will be crucial in order
-// for the provided `render` function to work! ```
+init();
