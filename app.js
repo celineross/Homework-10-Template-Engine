@@ -10,6 +10,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 const render = require("./lib/htmlRenderer");
 
+//user prompts for inputting data
 const userPrompt = [{
     type: "list",
     name: "employee",
@@ -17,6 +18,7 @@ const userPrompt = [{
     choices: ["Engineer", "Intern", "Manager", "N/A"]
 }]
 
+//set of questions for engineers
 const engQuestions = [
     {
         type: "input",
@@ -39,6 +41,54 @@ const engQuestions = [
         message: "Enter GitHub username: "
     }
 ]
+
+//set of questions for interns
+
+//set of questions for managers
+
+
+//function to display engineer data
+function eng() {
+    inquirer.prompt(engQuestions).then(function (data ) {
+        const newEng = new Engineer(data.name, data.email, data.id, data.github);
+        team.push(newEng);
+        init();
+    });
+}
+
+//function to display intern data
+function int() {
+    inquirer.prompt(engQuestions).then(function (data ) {
+        const newEng = new Engineer(data.name, data.email, data.id, data.github);
+        team.push(newEng);
+        init();
+    });
+}
+
+//function to display manager data
+function man() {
+    inquirer.prompt(engQuestions).then(function (data ) {
+        const newEng = new Engineer(data.name, data.email, data.id, data.github);
+        team.push(newEng);
+        init();
+    });
+}
+
+//initialize function
+function init() {
+    inquirer.prompt(userPrompt).then(function (data) {
+        switch (data.employee) {
+            case "Engineer":
+                return eng();
+            case "Intern":
+                return int();
+            case "Manager":
+                return man();
+            case "N/A":
+                render(team);
+        }
+    });
+}
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
