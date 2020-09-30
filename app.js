@@ -120,7 +120,7 @@ function man() {
 //initialize function
 function init() {
     inquirer.prompt(userPrompt).then(function (data) {
-        switch (data.employee) {
+        switch (data.emp) {
             case "Engineer":
                 return eng();
             case "Intern":
